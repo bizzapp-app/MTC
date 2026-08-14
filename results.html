@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exams & Results | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">📝 Examinations, CATs & Academic Grading</h3>
+              <span class="card-subtitle">CAT / Exam marks entry, automatic grading scale, and result slip printing</span>
+            </div>
+            <button class="btn btn-primary" id="add-result-btn">✍️ Record Exam Marks</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Unit Code & Name</th>
+                  <th>CAT (/30)</th>
+                  <th>Exam (/70)</th>
+                  <th>Total (/100)</th>
+                  <th>Grade</th>
+                  <th>Remarks</th>
+                  <th>Result Slip</th>
+                </tr>
+              </thead>
+              <tbody id="results-tbody">
+                <tr><td colspan="8" style="text-align:center; padding:2rem;">Loading examination results...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/results.js"></script>
+</body>
+</html>

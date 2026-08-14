@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library System | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">📖 Medical Library & Textbook Catalog</h3>
+              <span class="card-subtitle">Manage medical textbook repository, book borrowing, returns, and overdue fines</span>
+            </div>
+            <button class="btn btn-primary" id="add-book-btn">➕ Add New Book</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Book Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Availability</th>
+                  <th>Issue / Borrow</th>
+                </tr>
+              </thead>
+              <tbody id="books-tbody">
+                <tr><td colspan="5" style="text-align:center; padding:2rem;">Loading library repository...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/library.js"></script>
+</body>
+</html>

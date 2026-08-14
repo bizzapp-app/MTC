@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses & Units | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+          <div>
+            <h2 style="font-size:1.5rem; font-weight:800; color:var(--text-main); margin:0;">📚 Medical Programs & Curriculum Units</h2>
+            <span style="font-size:0.85rem; color:var(--text-muted);">Accredited programs, semester structures, and clinical rotation requirements</span>
+          </div>
+          <button class="btn btn-primary" id="add-course-btn">➕ Add New Course</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;" id="courses-grid">
+          <div style="padding:2rem; text-align:center;">Loading course programs...</div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/courses.js"></script>
+</body>
+</html>

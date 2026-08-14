@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Records | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/students.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">🎓 Student Registry & Admissions</h3>
+              <span class="card-subtitle">Manage student profiles, medical course enrollments, and uploaded credentials</span>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-secondary" id="export-students-btn">📥 Export Roster CSV</button>
+              <button class="btn btn-primary" id="add-student-btn">➕ Admit New Student</button>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:1rem; margin-bottom:1.25rem;">
+            <div>
+              <input type="text" class="form-control" id="search-student" placeholder="🔍 Search by Name, Admission No, or National ID..." />
+            </div>
+            <div>
+              <select class="form-control" id="filter-course">
+                <option value="">All Courses</option>
+                <option value="crs-001">Clinical Medicine & Surgery</option>
+                <option value="crs-002">Diploma KRCHN Nursing</option>
+                <option value="crs-003">Community Health</option>
+                <option value="crs-004">Health Records</option>
+                <option value="crs-005">Medical Laboratory Tech</option>
+              </select>
+            </div>
+            <div>
+              <select class="form-control" id="filter-status">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="suspended">Suspended</option>
+                <option value="graduated">Graduated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Admission No</th>
+                  <th>Student Name & Email</th>
+                  <th>Medical Course</th>
+                  <th>Semester</th>
+                  <th>County</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="students-tbody">
+                <tr><td colspan="7" style="text-align:center; padding:2rem;">Loading student records...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/students.js"></script>
+</body>
+</html>

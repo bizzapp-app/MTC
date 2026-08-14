@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ERP Portal Login | Mercylife Training College</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #064E3B 0%, #0F5132 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .login-box {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 440px;
+      padding: 2.25rem;
+    }
+    .login-brand-header { text-align: center; margin-bottom: 1.75rem; }
+    .login-logo {
+      width: 54px; height: 54px; background: #0F5132; color: #fff;
+      border-radius: var(--radius-md); display: inline-flex; align-items: center;
+      justify-content: center; font-weight: 900; font-size: 1.5rem; margin-bottom: 0.75rem;
+    }
+    .login-error {
+      display: none; background: #FEE2E2; color: #991B1B; padding: 0.75rem 1rem;
+      border-radius: 8px; font-size: 0.875rem; margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <div class="login-brand-header">
+      <div class="login-logo">M</div>
+      <h2 style="font-size:1.4rem; font-weight:800; margin:0;">MERCYLIFE COLLEGE ERP</h2>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">Secure staff &amp; student portal</p>
+    </div>
+
+    <div id="login-error" class="login-error"></div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label">Email Address *</label>
+        <input type="email" class="form-control" id="login-email" required autocomplete="username" placeholder="you@mercylifecollege.ac.ke" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password *</label>
+        <input type="password" class="form-control" id="login-password" required autocomplete="current-password" placeholder="Your password" />
+      </div>
+      <button type="submit" class="btn btn-primary" id="login-submit" style="width:100%; margin-top:0.5rem;">
+        Sign in
+      </button>
+    </form>
+    <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1.25rem;">
+      Accounts are issued by the college administrator. Password resets are handled by IT / admin.
+    </p>
+  </div>
+
+  <script type="module">
+    import { authenticateUser, getCurrentUser } from './assets/js/auth.js';
+
+    // If already signed in, go to dashboard
+    const existing = await getCurrentUser();
+    if (existing) {
+      const params = new URLSearchParams(window.location.search);
+      window.location.href = params.get('redirect') || 'dashboard.html';
+    }
+
+    const form = document.getElementById('login-form');
+    const errEl = document.getElementById('login-error');
+    const btn = document.getElementById('login-submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errEl.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      try {
+        await authenticateUser(
+          document.getElementById('login-email').value,
+          document.getElementById('login-password').value
+        );
+        const params = new URLSearchParams(window.location.search);
+        window.location.href = params.get('redirect') || 'dashboard.html';
+      } catch (err) {
+        errEl.textContent = err.message || 'Login failed';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Sign in';
+      }
+    });
+  </script>
+</body>
+</html>

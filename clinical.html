@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Rotations | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">🏥 Mercylite Hospital Clinical Rotations & Logbooks</h3>
+              <span class="card-subtitle">Track hospital ward attachments, clinical supervisor logs, and required hours</span>
+            </div>
+            <button class="btn btn-primary" id="assign-clinical-btn">➕ Assign Clinical Ward</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Hospital Partner</th>
+                  <th>Department / Ward</th>
+                  <th>Clinical Supervisor</th>
+                  <th>Required Hours</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                  <th>Logbook</th>
+                </tr>
+              </thead>
+              <tbody id="clinical-tbody">
+                <tr><td colspan="8" style="text-align:center; padding:2rem;">Loading clinical attachments...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/clinical.js"></script>
+</body>
+</html>

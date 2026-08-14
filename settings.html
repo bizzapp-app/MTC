@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Settings | Mercylife Training College ERP</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+
+    <div class="main-wrapper">
+      <div id="navbar-container"></div>
+
+      <main class="content-area">
+        <!-- Production security notice -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">🔒 Production authentication</h3>
+              <span class="card-subtitle">Supabase Auth is the only login system. Demo accounts and local password stores are disabled.</span>
+            </div>
+          </div>
+          <div style="padding:0.75rem 0 0.25rem; font-size:0.875rem; color:var(--text-muted);">
+            Create staff and student logins below. Each account is a real Supabase Auth user and works on any device.
+            Credentials are configured with environment variables (<code>VITE_SUPABASE_URL</code>, <code>VITE_SUPABASE_ANON_KEY</code>), not browser storage.
+          </div>
+        </div>
+
+        <!-- User Accounts & Staff Management (Chief Admin Feature) -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">👥 User Accounts & Staff Portal Credentials</h3>
+              <span class="card-subtitle">Chief Admin privilege: Create and manage login credentials for staff, lecturers, registrars, finance officers, & students</span>
+            </div>
+            <button class="btn btn-primary btn-sm" id="open-create-user-modal-btn">➕ Create New User Account</button>
+          </div>
+
+          <div style="display:flex; gap:1.5rem; margin-bottom:1.25rem; background:var(--bg-hover); padding:1rem 1.25rem; border-radius:var(--radius-lg); border:1px solid var(--border-color);">
+            <div><span style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Total System Users</span><br/><strong id="stat-total-users" style="font-size:1.25rem; color:var(--text-main);">0</strong></div>
+            <div style="border-left:1px solid var(--border-color); padding-left:1.5rem;"><span style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Staff & Faculty</span><br/><strong id="stat-staff-users" style="font-size:1.25rem; color:var(--color-primary-dark);">0</strong></div>
+            <div style="border-left:1px solid var(--border-color); padding-left:1.5rem;"><span style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Student Accounts</span><br/><strong id="stat-student-users" style="font-size:1.25rem; color:#0284C7;">0</strong></div>
+            <div style="border-left:1px solid var(--border-color); padding-left:1.5rem;"><span style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Active Status</span><br/><strong id="stat-active-users" style="font-size:1.25rem; color:#059669;">0</strong></div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>User / Full Name</th>
+                  <th>Email Login</th>
+                  <th>Assigned System Role</th>
+                  <th>Title / Designation</th>
+                  <th>Status</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <!-- Injected dynamically via settings.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- School / Institution Profile Settings -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">🏫 Institution & School Profile Settings</h3>
+              <span class="card-subtitle">Configure institutional details used across official receipts, fee statements, transcripts, certificates, & reports</span>
+            </div>
+            <button class="btn btn-sm btn-outline" id="reset-school-defaults-btn">🔄 Reset to Defaults</button>
+          </div>
+
+          <form id="school-profile-form">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Institution / College Name *</label>
+                <input type="text" class="form-control" id="school-name" placeholder="e.g. Mercylife Training College" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Motto / Tagline *</label>
+                <input type="text" class="form-control" id="school-tagline" placeholder="e.g. Excellence in Medical Training & Healthcare Innovation" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Parent Body / Partner Hospital</label>
+                <input type="text" class="form-control" id="school-owner" placeholder="e.g. Mercylite Hospital" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Accreditation / Exam Licensing Boards</label>
+                <input type="text" class="form-control" id="school-examboard" placeholder="e.g. Nursing Council of Kenya / TVETA / KMLTTB" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Official Contact Email *</label>
+                <input type="email" class="form-control" id="school-email" placeholder="e.g. info@mercylifecollege.ac.ke" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Official Phone Number *</label>
+                <input type="text" class="form-control" id="school-phone" placeholder="e.g. +254 712 345 678" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Physical Address / Location *</label>
+                <input type="text" class="form-control" id="school-address" placeholder="e.g. Mercylite Medical Complex, Kiambu Road, Kenya" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Postal Address (P.O. Box)</label>
+                <input type="text" class="form-control" id="school-pobox" placeholder="e.g. P.O. Box 12345-00100, Nairobi" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Official Website URL</label>
+                <input type="url" class="form-control" id="school-website" placeholder="e.g. https://mercylifecollege.ac.ke" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Default Currency Symbol *</label>
+                <input type="text" class="form-control" id="school-currency" placeholder="e.g. KSh or $" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Principal / CEO Name *</label>
+                <input type="text" class="form-control" id="school-principal" placeholder="e.g. Prof. Catherine Muthoni" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Principal Official Title</label>
+                <input type="text" class="form-control" id="school-principal-title" placeholder="e.g. College Principal & Chief Executive" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Academic Registrar Name *</label>
+                <input type="text" class="form-control" id="school-registrar" placeholder="e.g. Dr. Samuel Maina" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Institution Logo Image URL (Optional)</label>
+                <input type="url" class="form-control" id="school-logo" placeholder="e.g. https://domain.com/logo.png" />
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; gap:1rem; align-items:center;">
+              <button type="button" class="btn btn-primary" id="save-school-info-btn">💾 Save Institution Profile Settings</button>
+              <button type="button" class="btn btn-secondary" id="preview-doc-header-btn">👁️ Test Document Header Print</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Document Header Branding Preview Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📄 Live Document Branding Preview</h3>
+            <span class="card-subtitle">Real-time view of how your school header appears on generated receipts, transcripts, and certificates</span>
+          </div>
+          <div id="school-header-preview" style="border: 2px dashed var(--color-primary); padding: 1.5rem; border-radius: var(--radius-lg); background: var(--bg-hover); text-align: center;">
+            <!-- Live injected via settings.js -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">⚙️ Supabase API Credentials Configuration</h3>
+              <span class="card-subtitle">Connect directly to your live Supabase PostgreSQL backend database</span>
+            </div>
+          </div>
+
+          <form id="settings-form" style="max-width:700px;">
+            <div class="form-group">
+              <label class="form-label">Supabase Project URL *</label>
+              <input type="text" class="form-control" id="supabase-url-input" placeholder="https://your-project-id.supabase.co" />
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                Found in your Supabase Dashboard -> Project Settings -> API -> Project URL
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Supabase Anon (Public) Key *</label>
+              <textarea class="form-control" id="supabase-key-input" rows="3" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                Found in your Supabase Dashboard -> Project Settings -> API -> Project API Keys (anon public)
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; gap:1rem;">
+              <button type="button" class="btn btn-primary" id="save-supabase-config-btn">💾 Save Supabase Credentials</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Database Schema Instructions -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🗄️ PostgreSQL Database Setup Instructions</h3>
+          </div>
+          <p style="font-size:0.9rem; line-height:1.6; margin-bottom:1rem;">
+            To set up your tables, indexes, constraints, and Row Level Security policies on Supabase, simply copy the SQL script from <strong>schema.sql</strong> in the project root and execute it inside your <strong>Supabase SQL Editor</strong>.
+          </p>
+          <div style="padding:1rem; background:var(--bg-hover); border-radius:var(--radius-md); font-family:monospace; font-size:0.85rem;">
+            📁 File Location: /schema.sql<br/>
+            Includes: profiles, students, courses, units, attendance, exam_results, fee_invoices, fee_payments, clinical_attachments, library_books, audit_logs & RLS policies.
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create / Edit User Account Modal -->
+  <div class="modal-overlay" id="user-modal">
+    <div class="modal-container" style="max-width:550px;">
+      <div class="modal-header">
+        <h3 id="user-modal-title" style="margin:0; font-size:1.1rem; font-weight:700;">➕ Create New Portal User Account</h3>
+        <button class="modal-close" id="close-user-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="user-account-form">
+          <input type="hidden" id="user-account-id" value="" />
+
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-control" id="user-fullname-input" placeholder="e.g. Dr. Mary Njoki Kamau" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address (Login Username) *</label>
+            <input type="email" class="form-control" id="user-email-input" placeholder="e.g. m.njoki@mercylifecollege.ac.ke" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Assigned System Role *</label>
+            <select class="form-control" id="user-role-select" required>
+              <option value="administrator">👑 Administrator (Full System Control)</option>
+              <option value="principal">🎓 College Principal</option>
+              <option value="registrar">📋 Academic Registrar</option>
+              <option value="finance_officer">💰 Finance Officer</option>
+              <option value="lecturer">👨‍🏫 Lecturer / Faculty Member</option>
+              <option value="librarian">📚 Chief Librarian</option>
+              <option value="reception">🏢 Reception / Admissions Assistant</option>
+              <option value="student">👤 Student Account</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Title / Designation / Department</label>
+            <input type="text" class="form-control" id="user-title-input" placeholder="e.g. Head of Nursing Department" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="user-phone-input" placeholder="e.g. +254 700 123 456" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Login Password *</label>
+            <input type="password" class="form-control" id="user-password-input" placeholder="Set user login password (e.g. Pass1234)" required />
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">The user will enter this password at the login screen.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Account Status</label>
+            <select class="form-control" id="user-status-select">
+              <option value="active">Active (Can Login)</option>
+              <option value="suspended">Suspended (Blocked from Login)</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancel-user-modal-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-user-account-btn">Save & Create Account</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/settings.js"></script>
+</body>
+</html>

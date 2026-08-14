@@ -1,0 +1,6 @@
+{
+  "name": "Mercylife Training College Management System",
+  "description": "Comprehensive ERP School Management System for Mercylife Training College, featuring Student Management, Academics, Finance, Clinical Attachments, Library, and Supabase integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
